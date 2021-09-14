@@ -1,0 +1,49 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 2,
+      "title": "A fresh new day",
+      "author": "Valentina"
+    },
+    {
+      "title": "jfbvkjfbk",
+      "author": "user",
+      "id": 3
+    },
+    {
+      "title": "jfbvkjfbk",
+      "author": "user",
+      "id": 4
+    },
+    {
+      "title": "5",
+      "author": "user",
+      "id": 5
+    },
+    {
+      "title": "6",
+      "author": "user",
+      "id": 6
+    },
+    {
+      "title": "7",
+      "author": "user",
+      "id": 7
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

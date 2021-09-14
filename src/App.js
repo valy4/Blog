@@ -1,23 +1,45 @@
-import logo from './logo.svg';
+import react, { useState, useEffect } from 'react'
 import './App.css';
 
+const apiUrl = "http://localhost:3004/posts"
 function App() {
+  const [postList, setPostList] = useState([])
+  const [newPostTitle, setNewPostTitle] = useState("")
+
+
+  async function fetchPostList() {
+    const response = await fetch(apiUrl)
+    const data = await response.json()
+    setPostList(data)
+  }
+
+  async function createArticle(articleData) {
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      body: JSON.stringify(articleData),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    fetchPostList()
+  }
+
+  useEffect(() => {
+    fetchPostList()
+  }, [])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {postList.map((post) => (<div>
+        <p>{post.title}</p>
+      </div>))}
+      <input value={newPostTitle} onChange={(event) => { setNewPostTitle(event.target.value) }}></input>
+      <button onClick={() => {
+        createArticle({
+          "title": newPostTitle,
+          "author": "user"
+        })
+        setNewPostTitle("")
+      }}>Add Post</button>
     </div>
   );
 }
