@@ -1,4 +1,4 @@
-import react, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 
@@ -14,16 +14,7 @@ function HomePage() {
     setPostList(data)
   }
 
-  async function createArticle(articleData) {
-    const response = await fetch(apiUrl, {
-      method: "POST",
-      body: JSON.stringify(articleData),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-    fetchPostList()
-  }
+
 
   useEffect(() => {
     fetchPostList()
@@ -33,14 +24,15 @@ function HomePage() {
       {postList.map((post) => (<div>
         <Link to={`/posts/${post.id}`}><p>{post.title}</p></Link>
       </div>))}
-      <input value={newPostTitle} onChange={(event) => { setNewPostTitle(event.target.value) }}></input>
+      {/* <input value={newPostTitle} onChange={(event) => { setNewPostTitle(event.target.value) }}></input>
       <button onClick={() => {
         createArticle({
           "title": newPostTitle,
           "author": "user"
         })
         setNewPostTitle("")
-      }}>Add Post</button>
+      }}>Add Post</button> */}
+      <Link to={"/create-post"}>Add Comment</Link>
     </div>
   );
 }
