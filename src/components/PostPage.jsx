@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import "../App.css";
+
 
 const apiUrl = "http://localhost:3004/posts"
 
@@ -37,7 +39,7 @@ function PostPage() {
     })
     fetchSinglePost()
   }
-  return (<div>
+  return (<div className="App">
     <h2>{postData && postData.title}</h2>
     <p>{postData && postData.description}</p>
     <h1>Comments:</h1>
@@ -48,9 +50,12 @@ function PostPage() {
 
       )}
     </div>
-    <textarea value={commentText} onChange={(event) => { setCommentText(event.target.value) }}></textarea>
-    <button onClick={() => { createComment(commentText); setCommentText("") }}>Add Com</button>
-    <Link to="/"><button>Back Home</button></Link>
+    <div className="textarea-input">
+      <h3>Leave a comment:</h3>
+      <textarea value={commentText} onChange={(event) => { setCommentText(event.target.value) }}></textarea>
+      <button className="btn" style={{ width: "100px", alignSelf: "flex-end" }} onClick={() => { createComment(commentText); setCommentText("") }}>Add Com</button>
+    </div>
+    <Link to="/"><button className="btn">Back Home</button></Link>
   </div>)
 
 
